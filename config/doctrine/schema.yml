@@ -1,0 +1,861 @@
+Categoria:
+  connection: doctrine
+  tableName: categoria
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    nome:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    title:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Produto:
+      local: id
+      foreign: categoria_id
+      type: many
+Cliente:
+  connection: doctrine
+  tableName: cliente
+  columns:
+    pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    status:
+      type: string(5)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    data_cadastro:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Pessoa:
+      local: pessoa_id
+      foreign: id
+      type: one
+Contato:
+  connection: doctrine
+  tableName: contato
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    tipo:
+      type: string(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: F
+      notnull: true
+      autoincrement: false
+    contato:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    local:
+      type: string(45)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: C
+      notnull: true
+      autoincrement: false
+  relations:
+    ContatoPessoa:
+      local: id
+      foreign: contato_id
+      type: many
+ContatoPessoa:
+  connection: doctrine
+  tableName: contato_pessoa
+  columns:
+    contato_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    cnpj:
+      type: string(45)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Contato:
+      local: contato_id
+      foreign: id
+      type: one
+    Pessoa:
+      local: pessoa_id
+      foreign: id
+      type: one
+Endereco:
+  connection: doctrine
+  tableName: endereco
+  columns:
+    pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    rua:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    numero:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    bairro:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    cidade:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    uf:
+      type: string(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    cep:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    pais:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    descricao:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Pessoa:
+      local: pessoa_id
+      foreign: id
+      type: one
+EntradaProduto:
+  connection: doctrine
+  tableName: entrada_produto
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    fornecedor_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    produto_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    quantidade:
+      type: decimal(10)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    lote:
+      type: string(45)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    unidade:
+      type: string(3)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    data_compra:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    data_validade:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    valor_unitario:
+      type: 'decimal(7, 2)'
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    valor_total:
+      type: 'decimal(7, 2)'
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Fornecedor:
+      local: fornecedor_id
+      foreign: id
+      type: one
+    Produto:
+      local: produto_id
+      foreign: id
+      type: one
+Fisica:
+  connection: doctrine
+  tableName: fisica
+  columns:
+    pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    cpf:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    nome:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    rg:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    data_nascimento:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    sexo:
+      type: string(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Pessoa:
+      local: pessoa_id
+      foreign: id
+      type: one
+    Funcionario:
+      local: pessoa_id
+      foreign: fisica_pessoa_id
+      type: many
+Fornecedor:
+  connection: doctrine
+  tableName: fornecedor
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    data_cadastro:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Pessoa:
+      local: pessoa_id
+      foreign: id
+      type: one
+    EntradaProduto:
+      local: id
+      foreign: fornecedor_id
+      type: many
+Funcionario:
+  connection: doctrine
+  tableName: funcionario
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    fisica_pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    login:
+      type: string(50)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    senha:
+      type: string(20)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    email:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Fisica:
+      local: fisica_pessoa_id
+      foreign: pessoa_id
+      type: one
+    GrupoFuncionario:
+      local: id
+      foreign: funcionario_id
+      type: many
+FuncionarioHasFuncionario:
+  connection: doctrine
+  tableName: funcionario_has_funcionario
+  columns:
+    funcionario_fisica_pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    funcionario_fisica_pessoa_id1:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+FuncionarioHasFuncionario1:
+  connection: doctrine
+  tableName: funcionario_has_funcionario1
+  columns:
+    funcionario_fisica_pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    funcionario_fisica_pessoa_id1:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+Grupo:
+  connection: doctrine
+  tableName: grupo
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    nome:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    descricao:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    GrupoFuncionario:
+      local: id
+      foreign: grupo_id
+      type: many
+    GrupoServico:
+      local: id
+      foreign: grupo_id
+      type: many
+    ServicoGrupo:
+      local: id
+      foreign: grupo_id
+      type: many
+GrupoFuncionario:
+  connection: doctrine
+  tableName: grupo_funcionario
+  columns:
+    grupo_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    funcionario_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+  relations:
+    Grupo:
+      local: grupo_id
+      foreign: id
+      type: one
+    Funcionario:
+      local: funcionario_id
+      foreign: id
+      type: one
+GrupoServico:
+  connection: doctrine
+  tableName: grupo_servico
+  columns:
+    grupo_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    servico_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+  relations:
+    Grupo:
+      local: grupo_id
+      foreign: id
+      type: one
+    Servico:
+      local: servico_id
+      foreign: id
+      type: one
+Juridica:
+  connection: doctrine
+  tableName: juridica
+  columns:
+    pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    cnpj:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    razao_social:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    nome_fantasia:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    inscricao_estadual:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    ccm:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    Pessoa:
+      local: pessoa_id
+      foreign: id
+      type: one
+Modulo:
+  connection: doctrine
+  tableName: modulo
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    nome:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    descricao:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Servico:
+      local: id
+      foreign: modulo_id
+      type: many
+Pessoa:
+  connection: doctrine
+  tableName: pessoa
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    status:
+      type: string(2)
+      fixed: false
+      unsigned: false
+      primary: false
+      default: AT
+      notnull: true
+      autoincrement: false
+    tipo:
+      type: string(5)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    data_cadastro:
+      type: date(25)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Cliente:
+      local: id
+      foreign: pessoa_id
+      type: many
+    ContatoPessoa:
+      local: id
+      foreign: pessoa_id
+      type: many
+    Endereco:
+      local: id
+      foreign: pessoa_id
+      type: many
+    Fisica:
+      local: id
+      foreign: pessoa_id
+      type: many
+    Fornecedor:
+      local: id
+      foreign: pessoa_id
+      type: many
+    Juridica:
+      local: id
+      foreign: pessoa_id
+      type: many
+Produto:
+  connection: doctrine
+  tableName: produto
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    nome:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    descricao:
+      type: string(1000)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    categoria_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Categoria:
+      local: categoria_id
+      foreign: id
+      type: one
+    EntradaProduto:
+      local: id
+      foreign: produto_id
+      type: many
+Representacao:
+  connection: doctrine
+  tableName: representacao
+  columns:
+    juridica_pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    fisica_pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+Representante:
+  connection: doctrine
+  tableName: representante
+  columns:
+    fisica_pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+  relations:
+    RepresentanteHasJuridica:
+      local: fisica_pessoa_id
+      foreign: representante_fisica_pessoa_id
+      type: many
+    RepresentanteHasJuridica1:
+      local: fisica_pessoa_id
+      foreign: representante_fisica_pessoa_id
+      type: many
+RepresentanteHasJuridica:
+  connection: doctrine
+  tableName: representante_has_juridica
+  columns:
+    representante_fisica_pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    juridica_pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+  relations:
+    Representante:
+      local: representante_fisica_pessoa_id
+      foreign: fisica_pessoa_id
+      type: one
+RepresentanteHasJuridica1:
+  connection: doctrine
+  tableName: representante_has_juridica1
+  columns:
+    representante_fisica_pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    juridica_pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    fisica_pessoa_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+  relations:
+    Representante:
+      local: representante_fisica_pessoa_id
+      foreign: fisica_pessoa_id
+      type: one
+Servico:
+  connection: doctrine
+  tableName: servico
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    modulo_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    nome:
+      type: string(100)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    descricao:
+      type: string(200)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    Modulo:
+      local: modulo_id
+      foreign: id
+      type: one
+    GrupoServico:
+      local: id
+      foreign: servico_id
+      type: many
+    ServicoGrupo:
+      local: id
+      foreign: servico_id
+      type: many
+ServicoGrupo:
+  connection: doctrine
+  tableName: servico_grupo
+  columns:
+    servico_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    grupo_id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+  relations:
+    Servico:
+      local: servico_id
+      foreign: id
+      type: one
+    Grupo:
+      local: grupo_id
+      foreign: id
+      type: one
